@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قصة حبنا · Our Love Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    min-height: 100vh;
+    font-family: 'Amiri', 'Cairo', serif;
+    color: #4a2c2a;
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+    padding: 2rem 1rem;
+
+    background:
+        radial-gradient(ellipse at 15% 10%, rgba(255, 220, 180, 0.55) 0%, transparent 45%),
+        radial-gradient(ellipse at 85% 20%, rgba(255, 190, 200, 0.5) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 90%, rgba(255, 200, 170, 0.5) 0%, transparent 50%),
+        linear-gradient(150deg, #fff8f0 0%, #ffe8d8 25%, #fbd7cb 55%, #f4c4b8 85%, #e8a8a0 100%);
+    background-attachment: fixed;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: -20%;
+    background:
+        radial-gradient(circle at 25% 30%, rgba(255, 220, 180, 0.5) 0%, transparent 35%),
+        radial-gradient(circle at 75% 70%, rgba(255, 180, 180, 0.4) 0%, transparent 35%);
+    animation: ambientGlow 22s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+}
+
+@keyframes ambientGlow {
+    0%   { transform: translate(0, 0) scale(1); opacity: 0.7; }
+    50%  { transform: translate(-3%, 2%) scale(1.1); opacity: 0.9; }
+    100% { transform: translate(3%, -2%) scale(1.05); opacity: 0.8; }
+}
+
+/* BACKGROUND EFFECTS */
+.bg-layer { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.bokeh { position: absolute; border-radius: 50%; pointer-events: none; animation: bokehFloat linear infinite, bokehPulse ease-in-out infinite alternate; mix-blend-mode: screen; }
+@keyframes bokehFloat { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(-120vh) translateX(30px); } }
+@keyframes bokehPulse { 0% { opacity: 0.2; } 100% { opacity: 0.7; } }
+.heart-particle { position: absolute; pointer-events: none; user-select: none; animation: heartFloat linear infinite; filter: drop-shadow(0 0 8px rgba(255, 150, 150, 0.7)); }
+@keyframes heartFloat { 0% { transform: translateY(110vh) rotate(0deg) scale(0.6); opacity: 0; } 10% { opacity: 0.55; } 90% { opacity: 0.55; } 100% { transform: translateY(-15vh) rotate(360deg) scale(1.2); opacity: 0; } }
+.sparkle { position: absolute; pointer-events: none; color: #fff; text-shadow: 0 0 6px #ffd9b0, 0 0 14px #ffb890, 0 0 24px #ffa070; animation: sparkleTwinkle 4s ease-in-out infinite; }
+@keyframes sparkleTwinkle { 0%, 100% { opacity: 0.1; transform: scale(0.6); } 50% { opacity: 0.95; transform: scale(1.35); } }
+
+/* MAIN WRAPPER */
+.story-wrapper {
+    position: relative; z-index: 10;
+    max-width: 1080px; margin: 0 auto; width: 100%;
+    padding: 3rem 2.5rem; border-radius: 3rem;
+    background: rgba(255, 252, 248, 0.45);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    box-shadow: 0 30px 70px rgba(180, 100, 100, 0.22), 0 10px 30px rgba(255, 180, 170, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.85), inset 0 -2px 6px rgba(255, 220, 200, 0.35);
+    border: 1px solid rgba(255, 220, 205, 0.75);
+    display: flex; flex-direction: column; gap: 2.5rem;
+}
+
+/* HEADER */
+.header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; padding-bottom: 1rem; border-bottom: 1px dashed rgba(210, 150, 140, 0.5); }
+.title {
+    font-family: 'Aref Ruqaa', 'Amiri', serif;
+    font-weight: 700; font-size: clamp(2.6rem, 8.5vw, 4.5rem);
+    letter-spacing: 2px; line-height: 1.35;
+    background: linear-gradient(135deg, #b85c5c 0%, #d9958c 40%, #e8b98a 60%, #b85c5c 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    animation: titleShine 6s ease-in-out infinite;
+    filter: drop-shadow(0 4px 10px rgba(255, 180, 160, 0.6));
+}
+@keyframes titleShine { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.subtitle { font-family: 'Reem Kufi', sans-serif; font-weight: 500; font-size: clamp(1rem, 3vw, 1.25rem); color: #a86a6a; letter-spacing: 3px; text-transform: uppercase; opacity: 0.85; }
+
+/* DATE BANNER */
+.date-banner {
+    display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+    padding: 1.8rem 1.5rem; border-radius: 2.5rem;
+    background: linear-gradient(145deg, rgba(255, 245, 235, 0.85), rgba(255, 230, 220, 0.7));
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 210, 190, 0.8);
+    box-shadow: 0 18px 40px -12px rgba(190, 120, 110, 0.28), inset 0 1px 3px rgba(255, 255, 255, 0.95);
+}
+.date-label { font-family: 'Reem Kufi', sans-serif; font-weight: 600; font-size: clamp(1.1rem, 3.5vw, 1.4rem); color: #8a5252; letter-spacing: 2px; display: flex; align-items: center; gap: 0.5rem; }
+.relationship-date {
+    font-family: 'Aref Ruqaa', serif; font-weight: 700; font-size: clamp(1.6rem, 5.5vw, 2.3rem);
+    letter-spacing: 3px; direction: ltr;
+    background: linear-gradient(135deg, #c88a4e 0%, #e8b98a 50%, #c88a4e 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 6px rgba(220, 160, 100, 0.45));
+    padding: 0.3rem 1.5rem; border-radius: 30px; border: 1px dashed rgba(200, 140, 100, 0.5); background-color: rgba(255, 245, 235, 0.5);
+}
+.counter { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem 2rem; padding: 1.2rem 1.8rem; border-radius: 3rem; background: rgba(255, 250, 245, 0.75); border: 1px solid rgba(255, 215, 195, 0.9); box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.9); margin-top: 0.5rem; }
+.counter-item { display: flex; flex-direction: column; align-items: center; min-width: 68px; }
+.counter-value {
+    font-family: 'Playfair Display', 'Cairo', serif; font-weight: 700; font-size: clamp(1.7rem, 5vw, 2.3rem); line-height: 1.1; direction: ltr;
+    background: linear-gradient(145deg, #c07a7a, #a04d4d); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(255, 200, 190, 0.8));
+}
+.counter-label { font-family: 'Reem Kufi', sans-serif; font-size: 0.85rem; letter-spacing: 2px; color: #b08a8a; margin-top: 0.2rem; }
+.together-note { font-family: 'Reem Kufi', sans-serif; font-size: clamp(0.95rem, 3vw, 1.1rem); color: #9a6b6b; background: rgba(255, 245, 240, 0.7); padding: 0.4rem 1.4rem; border-radius: 30px; border: 1px dashed #e8b8a8; margin-top: 0.3rem; }
+
+/* SPECIAL DATES */
+.special-dates { padding: 1.8rem 1.5rem; border-radius: 2.5rem; background: rgba(255, 250, 245, 0.65); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 220, 210, 0.85); box-shadow: 0 18px 40px -12px rgba(190, 120, 110, 0.25), inset 0 1px 4px rgba(255, 255, 255, 0.9); }
+.section-title { text-align: center; font-family: 'Aref Ruqaa', 'Reem Kufi', serif; font-weight: 700; font-size: clamp(1.4rem, 4.5vw, 1.9rem); color: #9a6b6b; letter-spacing: 2px; margin-bottom: 1.8rem; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.section-title::before, .section-title::after { content: ''; flex: 1; max-width: 80px; height: 1px; background: linear-gradient(to right, transparent, #e8b8a8, transparent); }
+.dates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; }
+.date-card { padding: 1.6rem 1.2rem; border-radius: 1.8rem; text-align: center; background: linear-gradient(145deg, #fffcf9, #fff2ec); border: 1px solid #ffe0d4; box-shadow: 0 10px 20px rgba(220, 160, 150, 0.18), inset 0 2px 6px rgba(255, 255, 255, 0.9); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; }
+.date-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 35px rgba(200, 130, 120, 0.3), inset 0 2px 6px rgba(255, 255, 255, 1); }
+.date-card.highlight { background: linear-gradient(145deg, #ffe4dc, #ffd4c8); border: 1px solid #ffc2b0; box-shadow: 0 14px 28px rgba(220, 140, 130, 0.32), inset 0 2px 6px rgba(255, 255, 255, 1); }
+.date-icon { font-size: 2.4rem; margin-bottom: 0.6rem; display: inline-block; filter: drop-shadow(0 4px 8px rgba(255, 160, 150, 0.4)); animation: gentleFloat 3s ease-in-out infinite; }
+.date-card.highlight .date-icon { animation: heartBeat 1.5s ease-in-out infinite; }
+@keyframes gentleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes heartBeat { 0%, 100% { transform: scale(1); } 25% { transform: scale(1.18); } 50% { transform: scale(1.05); } 75% { transform: scale(1.2); } }
+.date-value { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.7rem; color: #b06868; margin-bottom: 0.35rem; letter-spacing: 2px; direction: ltr; }
+.date-card.highlight .date-value { color: #a04d4d; }
+.date-time { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.1rem; color: #c48a8a; margin-bottom: 0.55rem; direction: ltr; }
+.date-desc { font-family: 'Reem Kufi', 'Amiri', serif; font-size: 1.02rem; color: #7a5550; line-height: 1.8; }
+
+/* MESSAGE CARD */
+.message-card { position: relative; padding: 3rem 2.5rem; border-radius: 3rem; overflow: hidden; background: linear-gradient(145deg, rgba(255, 253, 250, 0.85), rgba(255, 242, 235, 0.7)); backdrop-filter: blur(16px) saturate(120%); -webkit-backdrop-filter: blur(16px) saturate(120%); border: 1px solid rgba(255, 220, 210, 0.85); box-shadow: 0 25px 55px -15px rgba(190, 120, 110, 0.35), inset 0 1px 4px rgba(255, 255, 255, 0.95), inset 0 -2px 10px rgba(255, 220, 210, 0.4); }
+.message-card::before { content: '❦'; position: absolute; top: -40px; left: -20px; font-size: 12rem; color: rgba(255, 180, 170, 0.1); font-family: serif; pointer-events: none; transform: rotate(-15deg); }
+.message-card::after { content: '❦'; position: absolute; bottom: -50px; right: -20px; font-size: 12rem; color: rgba(255, 180, 170, 0.1); font-family: serif; pointer-events: none; transform: rotate(165deg); }
+.message-heading { text-align: center; font-family: 'Aref Ruqaa', 'Reem Kufi', serif; font-weight: 700; font-size: clamp(1.5rem, 5vw, 2.1rem); margin-bottom: 2rem; letter-spacing: 2px; position: relative; z-index: 2; background: linear-gradient(135deg, #b06060, #d9958c, #b06060); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 3px 8px rgba(255, 180, 170, 0.5)); }
+.message-heading::after { content: ''; display: block; width: 110px; height: 2px; margin: 0.9rem auto 0; background: linear-gradient(to right, transparent, #e8b8a8, transparent); }
+.message-body { font-family: 'Amiri', serif; font-size: clamp(1.15rem, 3.6vw, 1.4rem); line-height: 2.3; color: #5a3a38; text-align: right; letter-spacing: 0.3px; position: relative; z-index: 2; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7); }
+.message-body p { margin-bottom: 1.3rem; padding: 0.6rem 1rem 0.6rem 0.5rem; border-right: 3px solid transparent; border-radius: 0 12px 12px 0; transition: all 0.4s ease; }
+.message-body p:hover { border-right-color: #e8b8a8; background: linear-gradient(to left, rgba(255, 235, 230, 0.6), transparent); transform: translateX(-4px); }
+.message-body p:last-child { margin-bottom: 0; }
+.accent { color: #b04d5b; font-weight: 700; font-family: 'Reem Kufi', serif; background: linear-gradient(to bottom, transparent 55%, rgba(255, 200, 190, 0.55) 55%); padding: 0 4px; }
+.message-signature { text-align: left; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed #e8b8a8; font-family: 'Reem Kufi', 'Amiri', serif; color: #a86060; font-size: clamp(1rem, 3.4vw, 1.2rem); position: relative; z-index: 2; }
+.message-signature .name { font-family: 'Aref Ruqaa', serif; font-size: 1.5em; font-weight: 700; background: linear-gradient(135deg, #b06060, #d9958c); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; margin-top: 0.3rem; letter-spacing: 1.5px; filter: drop-shadow(0 2px 5px rgba(255, 180, 170, 0.5)); }
+
+/* PHOTO FRAME */
+.photo-section { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; padding: 1rem 0; }
+.photo-title { font-family: 'Reem Kufi', 'Aref Ruqaa', serif; font-weight: 600; font-size: clamp(1.3rem, 4.5vw, 1.8rem); color: #9a6b6b; letter-spacing: 2px; display: flex; align-items: center; gap: 12px; }
+.photo-frame-wrap { perspective: 1200px; width: 100%; max-width: 420px; margin: 0 auto; }
+.photo-frame { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 1.5rem; padding: 16px; background: linear-gradient(145deg, #f9e8cf, #e8b98a, #d9a06e, #e8b98a, #f9e8cf); box-shadow: 0 30px 60px -15px rgba(160, 100, 90, 0.5), 0 15px 30px rgba(220, 160, 120, 0.3), inset 0 0 0 3px rgba(255, 250, 240, 0.7), inset 0 0 20px rgba(180, 120, 80, 0.25); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease; transform-style: preserve-3d; will-change: transform; cursor: pointer; }
+.photo-frame:hover { box-shadow: 0 45px 80px -15px rgba(160, 100, 90, 0.6), 0 20px 40px rgba(220, 160, 120, 0.4), inset 0 0 0 3px rgba(255, 250, 240, 0.9), inset 0 0 30px rgba(180, 120, 80, 0.35); }
+.photo-frame-inner { position: relative; width: 100%; height: 100%; border-radius: 1rem; overflow: hidden; background: linear-gradient(135deg, #fff5ee, #ffd9cf); box-shadow: inset 0 0 30px rgba(180, 130, 120, 0.3); }
+.photo-frame-inner img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); position: relative; z-index: 1; }
+.photo-frame:hover .photo-frame-inner img { transform: scale(1.08); }
+.photo-badge { position: absolute; top: -14px; right: -14px; padding: 0.4rem 1rem; border-radius: 30px; font-family: 'Reem Kufi', sans-serif; font-weight: 600; font-size: 0.85rem; color: #fff; background: linear-gradient(145deg, #d9958c, #b06060); box-shadow: 0 6px 16px rgba(180, 90, 90, 0.5); border: 2px solid #fff; letter-spacing: 0.5px; z-index: 5; transform: rotate(-8deg); }
+.photo-caption { font-family: 'Amiri', serif; font-style: italic; color: #a86060; font-size: clamp(1rem, 3vw, 1.15rem); text-align: center; margin-top: 1.2rem; letter-spacing: 1px; opacity: 0.9; }
+
+/* FOOTER */
+.footer { text-align: center; padding-top: 1rem; border-top: 1px dashed rgba(210, 150, 140, 0.5); font-family: 'Reem Kufi', sans-serif; color: #b08a8a; font-size: clamp(0.9rem, 3vw, 1rem); letter-spacing: 2px; display: flex; flex-direction: column; gap: 0.4rem; }
+.footer .heart-icon { color: #e07070; animation: heartBeat 1.6s ease-in-out infinite; display: inline-block; }
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+    body { padding: 1rem 0.6rem; }
+    .story-wrapper { padding: 2rem 1.2rem; gap: 1.8rem; border-radius: 2rem; }
+    .message-card { padding: 2rem 1.4rem; border-radius: 2rem; }
+    .counter { gap: 0.8rem 1.2rem; padding: 1rem 1rem; }
+    .counter-item { min-width: 58px; }
+    .photo-frame { padding: 12px; border-radius: 1.2rem; }
+    .date-banner { padding: 1.3rem 1rem; border-radius: 1.8rem; }
+    .special-dates { padding: 1.4rem 1rem; border-radius: 1.8rem; }
+    .dates-grid { grid-template-columns: 1fr; }
+    .message-card::before, .message-card::after { font-size: 8rem; }
+    .photo-frame-wrap { max-width: 340px; }
+}
+
+@media (max-width: 400px) {
+    .counter { gap: 0.6rem 0.9rem; }
+    .counter-value { font-size: 1.5rem; }
+    .counter-label { font-size: 0.75rem; letter-spacing: 1px; }
+    .date-value { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-layer" id="bgLayer"></div>
+
+<main class="story-wrapper">
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1 class="title">قصة حبنا</h1>
+        <div class="subtitle">Our Love Story · Forever & Always</div>
+    </header>
+
+    <!-- DATE + COUNTER -->
+    <section class="date-banner">
+        <div class="date-label">💖 تاريخ ارتباطنا</div>
+        <div class="relationship-date">15 · 03 · 2025 · 1:39 AM</div>
+
+        <div class="counter" id="counter">
+            <div class="counter-item">
+                <span class="counter-value" id="days">0</span>
+                <span class="counter-label">يوم</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-value" id="hours">0</span>
+                <span class="counter-label">ساعة</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-value" id="minutes">0</span>
+                <span class="counter-label">دقيقة</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-value" id="seconds">0</span>
+                <span class="counter-label">ثانية</span>
+            </div>
+        </div>
+
+        <div class="together-note" id="togetherNote">كل ثانية معاك كنز ❤️</div>
+    </section>
+
+    <!-- SPECIAL DATES -->
+    <section class="special-dates">
+        <h2 class="section-title">📅 تواريخ غالية على قلبي</h2>
+        <div class="dates-grid">
+
+            <div class="date-card highlight">
+                <div class="date-icon">🎂❤️</div>
+                <div class="date-value">15 / 03</div>
+                <div class="date-time">1 : 39 AM · 2025</div>
+                <div class="date-desc">
+                    عيد ميلادنا احنا الاتنين<br>
+                    وأحلى يوم في حياتي 🌏
+                </div>
+            </div>
+
+            <div class="date-card">
+                <div class="date-icon">👀✨</div>
+                <div class="date-value">02 / 06</div>
+                <div class="date-time">2025</div>
+                <div class="date-desc">
+                    أول يوم شوفتك فيه<br>
+                    وقلبي عرف طريقه 🥺
+                </div>
+            </div>
+
+            <div class="date-card">
+                <div class="date-icon">🌱💗</div>
+                <div class="date-value">10 / 06</div>
+                <div class="date-time">2025</div>
+                <div class="date-desc">
+                    اليوم اللي اتولدت فيه<br>
+                    من جديد بحبك 🥺
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MESSAGE -->
+    <section class="message-card">
+        <h2 class="message-heading">💌 رسالة من القلب 💌</h2>
+        <div class="message-body">
+            <p>
+                عايز أقولك إنك مش مجرد بنت بحبها... إنتي
+                <span class="accent">الحياة</span> اللي اتمنيتها من سنين،
+                إنتي الحلم اللي صحيت عليه ولقيته قدامي،
+                إنتي الأمان اللي قلبي ارتاح فيه والدفا اللي بحس بيه.
+                إنتي أجمل من كل الكلام اللي بيتقال، وأحن من كل حضن اتخيلته.
+                إنتي مش بس حبيبتي... إنتي <span class="accent">دنيتي</span>،
+                إنتي أخت روحي، إنتي ملاكي اللي ربنا بعتهولي. 🌏
+            </p>
+
+            <p>
+                من أول ما عرفتك وأنا مش زي زمان، كل حاجة بقت ليها طعم تاني.
+                الضحكة بقت من القلب، والدنيا بقت فيها أمل.
+                بقيت بصحى وأنا مبسوط عشان إنتي في حياتي،
+                بقيت بحب اليوم اللي بيعدي وإنتي فيه.
+                بقيت بضحك على حاجات بسيطة لأن وجودك بيكفيني،
+                بقيت بدعي من قلبي إنك تفضلي معايا العمر كله. ❤️
+            </p>
+
+            <p>
+                إنتي اللي غيرتيني للأحسن، إنتي اللي خلتيني أعرف يعني إيه
+                <span class="accent">حب حقيقي</span>.
+                إنتي النور اللي دخل قلبي ومفارقنيش،
+                إنتي النسمة اللي بتهدي قلبي وقت الزعل.
+                لما بشوفك بضحك من غير ما أحس،
+                لما بسمع صوتك بتهدى كل حاجة جوايا،
+                لما تبعتيلي مسدج قلبي بيرقص،
+                لما بتقوليلي <span class="accent">«وحشتني»</span>
+                بحس إني أسعد إنسان. 🥺
+            </p>
+
+            <p>
+                إنتي كل حاجة حلوة حصلتلي، إنتي اللي بخاف عليها من الهوا،
+                إنتي اللي بحس إني مش عايز منها غير رضاها.
+                أنا بحب كل تفاصيلك، بحب صوتك، بحب ضحكتك، بحب عصبيتك،
+                بحب طريقتك وإنتي بتزعلي وبتصالحيني بعدها زي الأطفال،
+                بحب خناقك لما بتغيري عليا، وبحب طيبة قلبك،
+                بحب عيونك وهي بتلمع، بحب لهفتك عليا واهتمامك بيا. 💕
+            </p>
+
+            <p>
+                إنتي سبب ضحكتي، إنتي سندي في الوجع، إنتي كتفي لما بتعب،
+                إنتي قلبي اللي بيدق عشانك كل ثانية.
+                إنتي بتملي حياتي فرحة وسكينة وضحكة حقيقية من القلب.
+                إنتي <span class="accent">ملاك</span> نزل عشاني،
+                إنتي هدية ربنا. 🌸
+            </p>
+
+            <p>
+                إنتي حبيبتي اللي بحبها من غير سبب،
+                إنتي اللي لو الدنيا كلها اتغيرت هتفضلي ثابتة جوا قلبي،
+                إنتي اللي وجودك بيهون عليا كل حاجة.
+                إنتي اللي بفتكرها أول ما أصحى وآخر ما أنام.
+                إنتي أجمل وأحن حب وأطيب قلب،
+                إنتي روحي وسر سعادتي وسبب ضحكتي.
+                لو عشت ألف عمر مش هيكفيني،
+                إنتي أجمل من كل الأوصاف. ✨
+            </p>
+        </div>
+
+        <div class="message-signature">
+            بحبك يا دكتورتي ❤️
+            <div class="name">حبيبك للأبد 💕</div>
+        </div>
+    </section>
+
+    <!-- PHOTO FRAME -->
+    <section class="photo-section">
+        <div class="photo-title">
+            <span>📸</span> ذكرى غالية <span>📸</span>
+        </div>
+
+        <div class="photo-frame-wrap">
+            <div class="photo-frame" id="photoFrame">
+                <div class="photo-badge">💕 Arjwan</div>
+                <div class="photo-frame-inner">
+                    <!-- ✏️ احفظ الصورة باسم arjwan.jpg في نفس الفولدر -->
+                    <img src="arjwan.jpg" alt="ذكرى غالية" id="photoImg">
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-caption">"أجمل ذكرى في حياتي · Arjwan"</div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div>صُنع بكل حب <span class="heart-icon">❤</span> لقصتنا اللي مش هتنتهي</div>
+        <div>15 · 03 · 2025 · Forever 💕</div>
+    </footer>
+
+</main>
+
+<script>
+/* BACKGROUND PARTICLES */
+(function initBackground() {
+    const layer = document.getElementById('bgLayer');
+    const
